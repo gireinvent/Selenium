@@ -1,0 +1,118 @@
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.JavascriptExecutor;
+
+
+import java.util.List;
+
+public class TestSelenium
+{
+    private static int a1;
+    private int a;
+
+
+    public static void main(String[] args)
+    {
+        String struserName, strPwd;
+         final String URL = "https://test.salesforce.com";
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver_win32\\chromedriver.exe");
+        //WebDriver driver = new ChromeDriver();
+       ChromeDriver driver=new ChromeDriver();
+        //WebDriver driver = new RemoteWebDriver("http://localhost:9515", DesiredCapabilities.chrome());
+        driver.get(URL);
+        login("", "", driver);
+       // WebDriverWait wait = new WebDriverWait(driver, 10);
+        Search("N830000026", driver);
+        //driver.navigate().refresh();
+        /*driver = null;*/
+        navigatetoCustomermenu ( driver);
+        @Test
+    }
+
+    public static void login (String struserName, String strPwd, ChromeDriver driver)
+    {
+        WebElement element =driver.findElement(By.id("username"));
+        element.sendKeys(struserName);
+
+        WebElement element2=driver.findElement(By.id("password"));
+        element2.sendKeys(strPwd);
+
+        WebElement button=driver.findElement(By.id("Login"));
+        button.click();
+    }
+
+    public  static void Search (String strPolicyNumber, ChromeDriver driver)
+    {
+        driver.switchTo().frame(0);
+
+        driver.switchTo().frame(0);
+        WebElement element2 = (new WebDriverWait(driver, 50))
+                .until(ExpectedConditions.presenceOfElementLocated(By.id("customerSearchPage:customerSearchForm:policyNumber")));
+//     WebElement element2 =driver.findElement(By.id("customerSearchPage:customerSearchForm:policyNumber"));
+        element2.sendKeys(strPolicyNumber);
+        driver.findElementsByTagName("element");
+
+        WebElement button=driver.findElement(By.id("searchButton"));
+        button.click();
+    }
+
+    public  static void navigatetoCustomermenu (ChromeDriver driver)
+    {
+
+        WebDriverWait wait = new WebDriverWait(driver,100);
+        driver.switchTo().defaultContent();
+        JavascriptExecutor jsExecutor = (JavascriptExecutor)driver;
+        String sText =  jsExecutor.executeScript("return window.frames['serviceDeskFrame'].contentWindow.frames['iframesearch'];").toString();
+        //System.out.println(sText);
+
+
+
+
+//        driver.switchTo().defaultContent();
+//        driver.switchTo().frame(0);
+//        WebElement ifrms1 = driver.findElement(By.xpath("//*[@id=\"iframesearch\"]"));
+//
+//        WebElement ifrms2 = driver.findElement(By.xpath("//*[@id=\"iframesearch\"]"));
+//        WebElement ifrms3 = driver.findElement(By.xpath("//*[@id=\"iframeTab_1744573\"]"));
+//
+//
+//        System.out.println(ifrms2.getTagName());
+//        System.out.println(ifrms2.getTagName());
+//       /* for (int i = 0; i < ifrms2.size(); i++) {
+//            System.out.println(ifrms2.get(i).getAttribute("serviceDeskFrame"));
+//        }*/
+//
+//        //System.out.println( driver.getCurrentUrl());
+//      //
+//
+//        System.out.println(driver.getSessionStorage().getItem("partyId"));
+//
+//        driver.switchTo().frame("iframeTab_1744573");
+//
+//
+//        for (int i = 0; i < ifrms.size(); i++) {
+//            System.out.println(ifrms.get(i).getAttribute("id"));
+//        }
+//        driver.switchTo().frame(0);
+//
+//        //driver.switchTo().frame("iframeTab_1744573");
+//
+//        /*//System.out.println(ifrms.get(0).getTagName("").);
+//        driver.switchTo().frame(0);
+//        WebElement elem = driver.findElement(By.xpath("//*[@id=\"iframeTab_1744573\"]"));
+//        driver.switchTo().frame(elem);*/
+//
+//
+//        WebElement dropdown = (new WebDriverWait(driver, 20))
+//                .until(ExpectedConditions.presenceOfElementLocated(By.id("customerMenu")));
+////     WebElement element2 =driver.findElement(By.id("customerSearchPage:customerSearchForm:policyNumber"));
+//        dropdown.click();
+
+
+    }
+}
+

@@ -1,0 +1,23 @@
+#Eclipse
+**/.settings
+**/.project
+**/.classpath
+**/bin
+**/out
+.metadata
+
+#Intellij
+**/.idea
+**/*.iml
+**/build
+
+#Gradle
+**/.gradle/
+**/gradle-wrapper.jar
+**/build
+**/logs
+*.log
+
+#Visual Studio Code
+**/.vscode
+
